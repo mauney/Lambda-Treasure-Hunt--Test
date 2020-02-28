@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
-from pusher import Pusher
+# from pusher import Pusher
 from django.http import JsonResponse
 from decouple import config
 from django.contrib.auth.models import User
@@ -11,8 +11,8 @@ from django.utils import timezone
 from datetime import datetime, timedelta
 import math
 
-# instantiate pusher
-pusher = Pusher(app_id=config('PUSHER_APP_ID'), key=config('PUSHER_KEY'), secret=config('PUSHER_SECRET'), cluster=config('PUSHER_CLUSTER'))
+instantiate pusher
+# pusher = Pusher(app_id=config('PUSHER_APP_ID'), key=config('PUSHER_KEY'), secret=config('PUSHER_SECRET'), cluster=config('PUSHER_CLUSTER'))
 
 SHOP_ROOM_ID=1
 TRANSMOGRIFIER_ROOM_ID=2
@@ -222,8 +222,8 @@ def move(request):
             else:
                 messages.append(f"Foolish Explorer: +50% CD")
                 cooldown_seconds *= 1.5
-        if nextRoom.terrain == "MOUNTAIN" and len(Player.objects.filter(id=9)) > 0:
-            pusher.trigger(f'p-channel-{Player.objects.get(id=9).uuid}', u'broadcast', {'message':f'{player.name} has walked {dirs[direction]} to room {nextRoom.id}.'})
+#         if nextRoom.terrain == "MOUNTAIN" and len(Player.objects.filter(id=9)) > 0:
+#             pusher.trigger(f'p-channel-{Player.objects.get(id=9).uuid}', u'broadcast', {'message':f'{player.name} has walked {dirs[direction]} to room {nextRoom.id}.'})
     else:
         cooldown_seconds += PENALTY_CANNOT_MOVE_THAT_WAY
         errors.append(f"You cannot move that way: +{PENALTY_CANNOT_MOVE_THAT_WAY}s CD")
@@ -575,8 +575,8 @@ def fly(request):
             else:
                 messages.append(f"Foolish Explorer: +50% CD")
                 cooldown_seconds *= 1.5
-        if nextRoom.terrain == "MOUNTAIN" and len(Player.objects.filter(id=1)) > 0:
-            pusher.trigger(f'p-channel-{Player.objects.get(id=1).uuid}', u'broadcast', {'message':f'{player.name} has flown {dirs[direction]} to room {nextRoom.id}.'})
+#         if nextRoom.terrain == "MOUNTAIN" and len(Player.objects.filter(id=1)) > 0:
+#             pusher.trigger(f'p-channel-{Player.objects.get(id=1).uuid}', u'broadcast', {'message':f'{player.name} has flown {dirs[direction]} to room {nextRoom.id}.'})
     else:
         cooldown_seconds += PENALTY_CANNOT_MOVE_THAT_WAY
         errors.append(f"You cannot move that way: +{PENALTY_CANNOT_MOVE_THAT_WAY}s CD")
