@@ -11,7 +11,7 @@ from django.utils import timezone
 from datetime import datetime, timedelta
 import math
 
-instantiate pusher
+# instantiate pusher
 # pusher = Pusher(app_id=config('PUSHER_APP_ID'), key=config('PUSHER_KEY'), secret=config('PUSHER_SECRET'), cluster=config('PUSHER_CLUSTER'))
 
 SHOP_ROOM_ID=1
